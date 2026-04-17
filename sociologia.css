@@ -1,0 +1,248 @@
+:root {
+    --bg-light: #fefef5;
+    --green-dark: #678a66;
+    --green-med: #84a77a;
+    --green-light: #fef8b2;
+    --blue-water: #bce6ef;
+    --white: #ffffff;
+    --danger: #e74c3c;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-light);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.game-wrapper {
+    width: 90vw;
+    height: 90vh;
+    border: 3px solid #ccc;
+    display: grid;
+    grid-template-rows: 60px 1fr 60px;
+    background: var(--bg-light);
+    border-radius: 10px;
+}
+
+#game-container {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 15px;
+    position: relative;
+    padding: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+
+.game-header, .game-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    background: var(--white);
+    border-bottom: 2px solid #ddd;
+}
+
+.game-header { background: #bce6ef; }
+.game-footer { background: #fef8b2; border-top: 2px solid #ddd;}
+.logo-genially { height: 30px; }
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 4fr 1.2fr;
+    gap: 15px;
+    padding: 20px;
+}
+
+/* Paneles Laterales */
+.side-panel { padding: 20px; text-align: center; }
+.title-container h1 { color: var(--green-dark); font-size: 1.5rem; margin-top: 10px; }
+.title-container img { height: 20px; margin: 0 3px; }
+
+.control-box {
+    background: var(--green-med);
+    color: var(--white);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 3px solid var(--white);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.control-box h3 { font-size: 1rem; margin: 0 0 10px 0; }
+
+#dice {
+    font-size: 2.5rem;
+    cursor: pointer;
+    background: linear-gradient(145deg, #ffffff, #dcdcdc);
+    color: #333;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    margin: 0 auto;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#dice:hover {
+    transform: scale(1.15) rotate(10deg);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+.info-btn {
+    background: var(--white); color: var(--green-med);
+    border: none; border-radius: 50%; width: 30px; height: 30px;
+    font-size: 1.2rem; cursor: pointer; font-weight: bold;
+}
+
+/* Tablero */
+#game-container {
+    background: var(--white);
+    border: 3px solid #ddd;
+    border-radius: 10px;
+    position: relative;
+    padding: 10px;
+}
+
+#game-tiles {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 3px;
+    height: 100%;
+}
+
+.tile {
+    background: var(--green-dark);
+    color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 5px;
+    font-weight: bold;
+    position: relative;
+}
+
+.tile.start { background-color: var(--blue-water); }
+.tile.end { background-color: #8ac086; color: var(--white); font-size: 2rem; border-radius: 50%; }
+.tile.special-question { background-color: #ffd700; color: #333; }
+
+/* Puntos Amarillos (con pseudo-elemento) */
+.tile.special-question::after {
+    content: '';
+    position: absolute;
+    width: 8px; height: 8px;
+    background: #ffdb58; border-radius: 50%;
+    border: 2px solid white;
+    top: 5px; right: 5px;
+}
+
+/* Ficha Jugador */
+#player {
+    width: 25px; height: 25px;
+    background: var(--danger); border-radius: 50%;
+    position: absolute; transition: all 0.4s ease-out;
+    border: 3px solid white; box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    z-index: 10;
+}
+
+/* Escaleras y Serpientes - Lógica básica de posicionamiento */
+.ladder, .snake { position: absolute; }
+.ladder {
+    width: 16px;
+    height: 100%;
+    background: none;
+}
+.ladder::before,
+.ladder::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    background: repeating-linear-gradient(
+        to bottom,
+        #8b5a2b,
+        #8b5a2b 10px,
+        #d2a679 10px,
+        #d2a679 20px
+    );
+    border-radius: 4px;
+}
+.ladder::before { left: 0; }
+.ladder::after { right: 0; }
+.ladder-1 { width: 18px; height: 100px; transform: rotate(-30deg); top: 15%; left: 32%; }
+.ladder-2 { width: 18px; height: 120px; transform: rotate(15deg); top: 60%; left: 35%; }
+.ladder-3 { width: 18px; height: 110px; transform: rotate(45deg); top: 35%; left: 70%; }
+
+.snake {
+    width: 14px;
+    border-radius: 20px;
+    background: repeating-linear-gradient(
+        45deg,
+        #2ecc71,
+        #2ecc71 8px,
+        #27ae60 8px,
+        #27ae60 16px
+    );
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+}
+.snake::before {
+    content: '';
+    position: absolute;
+    top: -14px;
+    left: -4px;
+    width: 20px;
+    height: 20px;
+    background: #27ae60;
+    border-radius: 50% 50% 40% 40%;
+    box-shadow: inset -4px -4px 0 rgba(0,0,0,0.15);
+}
+.snake::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    right: -2px;
+    width: 10px;
+    height: 10px;
+    background: #27ae60;
+    border-radius: 50%;
+}
+.snake-1 { height: 130px; transform: rotate(-10deg); top: 20%; left: 45%; }
+.snake-2 { height: 110px; transform: rotate(25deg); top: 10%; left: 70%; }
+.snake-3 { height: 100px; transform: rotate(-20deg); top: 40%; left: 12%; }
+
+/* Modales */
+.modal {
+    display: none;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center; align-items: center;
+    z-index: 100;
+}
+
+.modal-content {
+    background: var(--white); padding: 30px; border-radius: 10px;
+    max-width: 450px; text-align: center;
+}
+
+.quiz-btn, .close-btn {
+    margin: 10px; padding: 12px 25px; border-radius: 5px; cursor: pointer;
+    font-size: 1rem; border: none; font-weight: bold;
+}
+
+.quiz-btn { background: var(--green-med); color: var(--white); }
+.close-btn { background: #ddd; color: #333; }
+
+.info-icon {
+    width: 60px; height: 60px;
+    margin-bottom: 5px;
+}
+

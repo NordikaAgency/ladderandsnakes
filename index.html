@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafío: Ciencia o Intuición</title>
+    <link rel="stylesheet" href="./sociologia.css">
+    <link rel="icon" type="image/png" href="./images/icon.png">
+</head>
+<body>
+    <div class="game-wrapper">
+        <header class="game-header"></header>
+        <div class="main-content">
+            <aside class="side-panel left-panel">
+                <div class="title-container">
+                    <h1>Serpientes y escaleras</h1>
+                </div>
+            </aside>
+
+            <main id="game-container">
+                <div id="game-tiles"></div>
+                <div id="player"></div>
+                <div class="ladders">
+                    <div class="ladder ladder-1"></div>
+                    <div class="ladder ladder-2"></div>
+                    <div class="ladder ladder-3"></div>
+                </div>
+                <div class="snakes">
+                    <div class="snake snake-1"></div>
+                    <div class="snake snake-2"></div>
+                    <div class="snake snake-3"></div>
+                </div>
+            </main>
+
+            <aside class="side-panel right-panel">
+                <div class="control-box dice-box">
+                    <h3>¡Toca el dado!</h3>
+                    <div id="dice" onclick="rollDice()">1</div>
+                </div>
+                <div class="control-box info-box">
+                    <img class="info-icon" src="./images/icon_instrucciones.png" alt="icono instrucciones">
+                    <h3>Instrucciones</h3>
+                    <button class="info-btn" onclick="toggleModal('modal-instructions')">?</button>
+                </div>
+            </aside>
+        </div>
+        <footer class="game-footer">
+            <img src="./images/logo_genially.png" alt="Logo Genially" class="logo-genially">
+        </footer>
+    </div>
+
+    <div id="modal-instructions" class="modal">
+        <div class="modal-content">
+            <h2>Instrucciones de Juego</h2>
+            <p>1. Presiona el dado para moverte.</p>
+            <p>2. ¡Cuidado con las serpientes! Te retrocederán.</p>
+            <p>3. ¡Usa las escaleras para subir!</p>
+            <p>4. Casillas Amarillas: cuando caigas, aparecerá una afirmación. Elige si es <strong>Científico</strong> o <strong>Sentido Común</strong>. Si fallas, retrocederás.</p>
+            <button class="close-btn" onclick="toggleModal('modal-instructions')">Cerrar</button>
+        </div>
+    </div>
+
+    <div id="modal-quiz" class="modal">
+        <div class="modal-content">
+            <h3>¿Qué tipo de conocimiento es?</h3>
+            <p id="question-text"></p>
+            <button class="quiz-btn" onclick="checkAnswer('cientifico')">Conocimiento Científico</button>
+            <button class="quiz-btn" onclick="checkAnswer('comun')">Sentido Común</button>
+        </div>
+    </div>
+
+    <script src="./sociologia.js"></script>
+</body>
+</html>
