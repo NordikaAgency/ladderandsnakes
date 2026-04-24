@@ -154,54 +154,66 @@ body {
     z-index: 10;
 }
 
-/* Escaleras y Serpientes */
-.ladder, .snake { position: absolute; }
+/* =============================================
+   ESCALERAS Y SERPIENTES
+   Ancladas al CENTRO de la casilla de origen.
+   transform-origin: center top → rota desde ese punto.
+   top/left en % del contenedor (estables entre breakpoints).
+   height en px ajustada por breakpoint.
+   ============================================= */
+
+.ladder, .snake {
+    position: absolute;
+    transform-origin: center top;
+    z-index: 5;
+}
+
+/* --- ESCALERAS --- */
 .ladder {
     width: 16px;
-    height: 100%;
     background: none;
+    margin-left: -8px;
 }
 .ladder::before,
 .ladder::after {
     content: '';
     position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 6px;
+    top: 0; bottom: 0;
+    width: 5px;
     background: repeating-linear-gradient(
         to bottom,
-        #8b5a2b,
-        #8b5a2b 10px,
-        #d2a679 10px,
-        #d2a679 20px
+        #8b5a2b, #8b5a2b 10px,
+        #d2a679 10px, #d2a679 20px
     );
     border-radius: 4px;
 }
 .ladder::before { left: 0; }
-.ladder::after { right: 0; }
-.ladder-1 { width: 18px; height: 100px; transform: rotate(-30deg); top: 15%; left: 32%; }
-.ladder-2 { width: 18px; height: 120px; transform: rotate(15deg); top: 60%; left: 35%; }
-.ladder-3 { width: 18px; height: 110px; transform: rotate(45deg); top: 35%; left: 70%; }
+.ladder::after  { right: 0; }
 
+/* Escalera 1: casilla 3 → 24 */
+.ladder-1 { top: 91.7%; left: 25.0%; height: 156px; transform: rotate(19.5deg); }
+/* Escalera 2: casilla 37 → 28  (trampa: baja) */
+.ladder-2 { top: 41.7%; left: 35.0%; height: 221px; transform: rotate(109.4deg); }
+/* Escalera 3: casilla 54 → 55  (un paso) */
+.ladder-3 { top: 8.3%;  left: 65.0%; height: 52px;  transform: rotate(-90.0deg); }
+
+/* --- SERPIENTES --- */
 .snake {
     width: 14px;
+    margin-left: -7px;
     border-radius: 20px;
     background: repeating-linear-gradient(
         45deg,
-        #2ecc71,
-        #2ecc71 8px,
-        #27ae60 8px,
-        #27ae60 16px
+        #2ecc71, #2ecc71 8px,
+        #27ae60 8px, #27ae60 16px
     );
     box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
 }
 .snake::before {
     content: '';
     position: absolute;
-    top: -14px;
-    left: -4px;
-    width: 20px;
-    height: 20px;
+    top: -14px; left: -4px;
+    width: 20px; height: 20px;
     background: #27ae60;
     border-radius: 50% 50% 40% 40%;
     box-shadow: inset -4px -4px 0 rgba(0,0,0,0.15);
@@ -209,16 +221,18 @@ body {
 .snake::after {
     content: '';
     position: absolute;
-    bottom: -10px;
-    right: -2px;
-    width: 10px;
-    height: 10px;
+    bottom: -10px; right: -2px;
+    width: 10px; height: 10px;
     background: #27ae60;
     border-radius: 50%;
 }
-.snake-1 { height: 130px; transform: rotate(-10deg); top: 20%; left: 45%; }
-.snake-2 { height: 110px; transform: rotate(25deg); top: 10%; left: 70%; }
-.snake-3 { height: 100px; transform: rotate(-20deg); top: 40%; left: 12%; }
+
+/* Serpiente 1: casilla 27 → 8 */
+.snake-1 { top: 58.3%; left: 65.0%; height: 156px; transform: rotate(160.5deg); }
+/* Serpiente 2: casilla 35 → 5 */
+.snake-2 { top: 41.7%; left: 55.0%; height: 226px; transform: rotate(-166.7deg); }
+/* Serpiente 3: casilla 42 → 21 */
+.snake-3 { top: 25.0%; left: 15.0%; height: 156px; transform: rotate(-160.5deg); }
 
 /* Modales */
 .modal {
@@ -312,6 +326,14 @@ body {
 
     .info-icon { width: 45px; height: 45px; }
 
+    /* Escaleras y serpientes — tablet */
+    .ladder-1 { height: 118px; transform: rotate(16.7deg);   }
+    .ladder-2 { height: 147px; transform: rotate(112.6deg);  }
+    .ladder-3 { height: 34px;  transform: rotate(-90.0deg);  }
+    .snake-1  { height: 118px; transform: rotate(163.3deg);  }
+    .snake-2  { height: 173px; transform: rotate(-168.7deg); }
+    .snake-3  { height: 118px; transform: rotate(-163.3deg); }
+
     .modal-content {
         padding: 20px 15px;
     }
@@ -396,10 +418,10 @@ body {
     .info-btn { width: 26px; height: 26px; font-size: 1rem; }
 
     /* Escalar escaleras y serpientes para pantallas pequeñas */
-    .ladder-1 { height: 70px; }
-    .ladder-2 { height: 85px; }
-    .ladder-3 { height: 80px; }
-    .snake-1 { height: 90px; }
-    .snake-2 { height: 80px; }
-    .snake-3 { height: 70px; }
+    .ladder-1 { height: 94px;  transform: rotate(16.7deg);   }
+    .ladder-2 { height: 117px; transform: rotate(112.6deg);  }
+    .ladder-3 { height: 27px;  transform: rotate(-90.0deg);  }
+    .snake-1  { height: 94px;  transform: rotate(163.3deg);  }
+    .snake-2  { height: 138px; transform: rotate(-168.7deg); }
+    .snake-3  { height: 94px;  transform: rotate(-163.3deg); }
 }
