@@ -224,3 +224,49 @@ window.onload = () => {
 
 // Añadí esto para que se redibujen si cambias el tamaño de la ventana
 window.onresize = drawBoardElements;
+
+
+// Esta función ahora es más robusta para móviles
+function drawBoardElements() {
+    const svg = document.getElementById('board-svg');
+    if (!svg) return;
+    
+    // Limpiamos el SVG antes de redibujar
+    svg.innerHTML = '';
+
+    // IMPORTANTE: Dibujamos solo si las casillas ya existen en el DOM
+    const firstTile = document.getElementById('tile-1');
+    if (!firstTile) return;
+
+    // Dibujamos las escaleras
+    if (ladders[3]) drawLadder(svg, 3, 24);
+    if (ladders[37]) drawLadder(svg, 37, 28);
+    // (Ya eliminamos la del 54 según pediste antes)
+
+    // Dibujamos las serpientes
+    drawSnake(svg, 27, 8);
+    drawSnake(svg, 35, 5);
+    drawSnake(svg, 42, 21);
+    
+    // Actualizamos la posición del jugador también al redibujar
+    updatePlayerUI();
+}
+
+// Lógica para que sea Responsive Real-Time
+const gameContainer = document.getElementById('game-container');
+const ro = new ResizeObserver(() => {
+    // Cada vez que el contenedor cambie aunque sea 1px, se redibuja todo
+    drawBoardElements();
+});
+
+// Iniciamos la observación
+ro.observe(gameContainer);
+
+// Modificamos el onload para asegurar que la ficha aparezca
+window.onload = () => {
+    // Generar el tablero ya lo haces arriba en tu código
+    setTimeout(() => {
+        drawBoardElements();
+        updatePlayerUI();
+    }, 200); // Un pequeño delay ayuda a que el navegador asiente el layout
+};
