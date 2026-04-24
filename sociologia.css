@@ -156,11 +156,15 @@ body {
 
 /* =============================================
    ESCALERAS Y SERPIENTES
-   Ancladas al CENTRO de la casilla de origen.
-   transform-origin: center top → rota desde ese punto.
-   top/left en % del contenedor (estables entre breakpoints).
-   height en px ajustada por breakpoint.
+   .ladders/.snakes son overlays sobre #game-tiles.
+   Sus hijos usan top/left en % de ese overlay.
    ============================================= */
+
+.ladders, .snakes {
+    position: absolute;
+    top: 10px; left: 10px; right: 10px; bottom: 10px;
+    pointer-events: none;
+}
 
 .ladder, .snake {
     position: absolute;
@@ -191,11 +195,11 @@ body {
 .ladder::after  { right: 0; }
 
 /* Escalera 1: casilla 3 → 24 */
-.ladder-1 { top: 91.7%; left: 25.0%; height: 156px; transform: rotate(19.5deg); }
+.ladder-1 { top: 91.7%; left: 25.0%; height: 37.3%; transform: rotate(26.6deg); }
 /* Escalera 2: casilla 37 → 28  (trampa: baja) */
-.ladder-2 { top: 41.7%; left: 35.0%; height: 221px; transform: rotate(109.4deg); }
-/* Escalera 3: casilla 54 → 55  (un paso) */
-.ladder-3 { top: 8.3%;  left: 65.0%; height: 52px;  transform: rotate(-90.0deg); }
+.ladder-2 { top: 41.7%; left: 35.0%; height: 68.7%; transform: rotate(104.0deg); }
+/* Escalera 3: casilla 54 → 55  (un paso lateral) */
+.ladder-3 { top: 8.3%;  left: 65.0%; height: 16.7%; transform: rotate(-90.0deg); }
 
 /* --- SERPIENTES --- */
 .snake {
@@ -228,11 +232,11 @@ body {
 }
 
 /* Serpiente 1: casilla 27 → 8 */
-.snake-1 { top: 58.3%; left: 65.0%; height: 156px; transform: rotate(160.5deg); }
+.snake-1 { top: 58.3%; left: 65.0%; height: 37.3%; transform: rotate(153.4deg); }
 /* Serpiente 2: casilla 35 → 5 */
-.snake-2 { top: 41.7%; left: 55.0%; height: 226px; transform: rotate(-166.7deg); }
+.snake-2 { top: 41.7%; left: 55.0%; height: 52.7%; transform: rotate(-161.6deg); }
 /* Serpiente 3: casilla 42 → 21 */
-.snake-3 { top: 25.0%; left: 15.0%; height: 156px; transform: rotate(-160.5deg); }
+.snake-3 { top: 25.0%; left: 15.0%; height: 37.3%; transform: rotate(-153.4deg); }
 
 /* Modales */
 .modal {
@@ -299,6 +303,11 @@ body {
         padding: 6px;
     }
 
+    /* overlay se ajusta al nuevo padding */
+    .ladders, .snakes {
+        top: 6px; left: 6px; right: 6px; bottom: 6px;
+    }
+
     /* El panel derecho (dado + instrucciones) va abajo */
     .right-panel {
         order: 3;
@@ -325,14 +334,6 @@ body {
     }
 
     .info-icon { width: 45px; height: 45px; }
-
-    /* Escaleras y serpientes — tablet */
-    .ladder-1 { height: 118px; transform: rotate(16.7deg);   }
-    .ladder-2 { height: 147px; transform: rotate(112.6deg);  }
-    .ladder-3 { height: 34px;  transform: rotate(-90.0deg);  }
-    .snake-1  { height: 118px; transform: rotate(163.3deg);  }
-    .snake-2  { height: 173px; transform: rotate(-168.7deg); }
-    .snake-3  { height: 118px; transform: rotate(-163.3deg); }
 
     .modal-content {
         padding: 20px 15px;
@@ -371,6 +372,11 @@ body {
     #game-container {
         min-height: 60vw;
         padding: 4px;
+    }
+
+    /* overlay se ajusta al nuevo padding */
+    .ladders, .snakes {
+        top: 4px; left: 4px; right: 4px; bottom: 4px;
     }
 
     #game-tiles {
@@ -416,12 +422,4 @@ body {
 
     .info-icon { width: 35px; height: 35px; }
     .info-btn { width: 26px; height: 26px; font-size: 1rem; }
-
-    /* Escalar escaleras y serpientes para pantallas pequeñas */
-    .ladder-1 { height: 94px;  transform: rotate(16.7deg);   }
-    .ladder-2 { height: 117px; transform: rotate(112.6deg);  }
-    .ladder-3 { height: 27px;  transform: rotate(-90.0deg);  }
-    .snake-1  { height: 94px;  transform: rotate(163.3deg);  }
-    .snake-2  { height: 138px; transform: rotate(-168.7deg); }
-    .snake-3  { height: 94px;  transform: rotate(-163.3deg); }
 }
