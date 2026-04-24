@@ -16,17 +16,18 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .game-wrapper {
-    width: 90vw;
-    height: 90vh;
+    width: 100vw;
+    min-height: 100vh;
     border: 3px solid #ccc;
     display: grid;
-    grid-template-rows: 60px 1fr 60px;
+    grid-template-rows: 50px 1fr 50px;
     background: var(--bg-light);
-    border-radius: 10px;
+    border-radius: 0;
+    box-sizing: border-box;
 }
 
 #game-container {
@@ -39,7 +40,6 @@ body {
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-
 .game-header, .game-footer {
     display: flex;
     align-items: center;
@@ -51,13 +51,14 @@ body {
 
 .game-header { background: #bce6ef; }
 .game-footer { background: #fef8b2; border-top: 2px solid #ddd;}
-.logo-genially { height: 30px; }
+.logo-genially { height: 25px; }
 
 .main-content {
     display: grid;
     grid-template-columns: 1fr 4fr 1.2fr;
     gap: 15px;
     padding: 20px;
+    min-height: 0;
 }
 
 /* Paneles Laterales */
@@ -153,7 +154,7 @@ body {
     z-index: 10;
 }
 
-/* Escaleras y Serpientes - Lógica básica de posicionamiento */
+/* Escaleras y Serpientes */
 .ladder, .snake { position: absolute; }
 .ladder {
     width: 16px;
@@ -230,7 +231,8 @@ body {
 
 .modal-content {
     background: var(--white); padding: 30px; border-radius: 10px;
-    max-width: 450px; text-align: center;
+    max-width: 450px; width: 90%; text-align: center;
+    box-sizing: border-box;
 }
 
 .quiz-btn, .close-btn {
@@ -246,3 +248,158 @@ body {
     margin-bottom: 5px;
 }
 
+/* =====================
+   RESPONSIVE - TABLET
+   ===================== */
+@media (max-width: 768px) {
+    .game-wrapper {
+        width: 100vw;
+        min-height: 100vh;
+        grid-template-rows: 44px 1fr 44px;
+        border: none;
+        border-radius: 0;
+    }
+
+    .main-content {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    /* En tablet/mobile el panel izquierdo va arriba */
+    .left-panel {
+        order: 1;
+        padding: 8px 10px;
+    }
+
+    .title-container h1 {
+        font-size: 1.1rem;
+        margin: 0;
+    }
+
+    /* El tablero ocupa el centro */
+    #game-container {
+        order: 2;
+        min-height: 55vw;
+        padding: 6px;
+    }
+
+    /* El panel derecho (dado + instrucciones) va abajo */
+    .right-panel {
+        order: 3;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 15px;
+        padding: 8px 10px;
+    }
+
+    .control-box {
+        flex: 1;
+        max-width: 160px;
+        margin-bottom: 0;
+        padding: 10px;
+    }
+
+    .control-box h3 { font-size: 0.85rem; }
+
+    #dice {
+        width: 55px;
+        height: 55px;
+        font-size: 2rem;
+    }
+
+    .info-icon { width: 45px; height: 45px; }
+
+    .modal-content {
+        padding: 20px 15px;
+    }
+
+    .quiz-btn, .close-btn {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+        display: block;
+        width: 100%;
+        margin: 6px 0;
+    }
+}
+
+/* =====================
+   RESPONSIVE - MOBILE
+   ===================== */
+@media (max-width: 480px) {
+    .game-wrapper {
+        grid-template-rows: 40px 1fr 40px;
+    }
+
+    .logo-genially { height: 20px; }
+
+    .main-content {
+        padding: 6px;
+        gap: 6px;
+    }
+
+    .left-panel { padding: 5px 8px; }
+
+    .title-container h1 {
+        font-size: 0.95rem;
+    }
+
+    #game-container {
+        min-height: 60vw;
+        padding: 4px;
+    }
+
+    #game-tiles {
+        gap: 2px;
+    }
+
+    .tile {
+        font-size: 0.55rem;
+        border-radius: 3px;
+    }
+
+    .tile.special-question::after {
+        width: 5px;
+        height: 5px;
+        top: 2px;
+        right: 2px;
+    }
+
+    #player {
+        width: 18px;
+        height: 18px;
+        border-width: 2px;
+    }
+
+    .right-panel {
+        gap: 8px;
+        padding: 5px 8px;
+    }
+
+    .control-box {
+        padding: 8px 6px;
+        max-width: 140px;
+    }
+
+    .control-box h3 { font-size: 0.75rem; margin-bottom: 6px; }
+
+    #dice {
+        width: 46px;
+        height: 46px;
+        font-size: 1.6rem;
+        border-radius: 10px;
+    }
+
+    .info-icon { width: 35px; height: 35px; }
+    .info-btn { width: 26px; height: 26px; font-size: 1rem; }
+
+    /* Escalar escaleras y serpientes para pantallas pequeñas */
+    .ladder-1 { height: 70px; }
+    .ladder-2 { height: 85px; }
+    .ladder-3 { height: 80px; }
+    .snake-1 { height: 90px; }
+    .snake-2 { height: 80px; }
+    .snake-3 { height: 70px; }
+}
