@@ -164,11 +164,12 @@ body {
     position: absolute;
     top: 10px; left: 10px; right: 10px; bottom: 10px;
     pointer-events: none;
+    overflow: visible;
 }
 
 .ladder, .snake {
     position: absolute;
-    transform-origin: center top;
+    transform-origin: center bottom;
     z-index: 5;
 }
 
@@ -176,7 +177,6 @@ body {
 .ladder {
     width: 16px;
     background: none;
-    margin-left: -8px;
 }
 .ladder::before,
 .ladder::after {
@@ -195,11 +195,11 @@ body {
 .ladder::after  { right: 0; }
 
 /* Escalera 1: casilla 3 → 24 */
-.ladder-1 { top: 91.7%; left: 25.0%; height: 37.3%; transform: rotate(26.6deg); }
-/* Escalera 2: casilla 37 → 28  (trampa: baja) */
-.ladder-2 { top: 41.7%; left: 35.0%; height: 68.7%; transform: rotate(104.0deg); }
-/* Escalera 3: casilla 54 → 55  (un paso lateral) */
-.ladder-3 { top: 8.3%;  left: 65.0%; height: 16.7%; transform: rotate(-90.0deg); }
+.ladder-1 { top: 57.8%; left: 25.0%; height: 33.9%; transform: translateX(-50%) rotate(10.2deg); }
+/* Escalera 2: casilla 37 → 28 (trampa: baja) */
+.ladder-2 { top: 12.4%; left: 35.0%; height: 29.2%; transform: translateX(-50%) rotate(124.8deg); }
+/* Escalera 3: casilla 54 → 55 (un paso lateral) */
+.ladder-3 { top:  2.3%; left: 65.0%; height:  6.0%; transform: translateX(-50%) rotate(-90.0deg); }
 
 /* --- SERPIENTES --- */
 .snake {
@@ -232,11 +232,11 @@ body {
 }
 
 /* Serpiente 1: casilla 27 → 8 */
-.snake-1 { top: 58.3%; left: 65.0%; height: 37.3%; transform: rotate(153.4deg); }
+.snake-1 { top: 24.5%; left: 65.0%; height: 33.9%; transform: translateX(-50%) rotate(169.8deg); }
 /* Serpiente 2: casilla 35 → 5 */
-.snake-2 { top: 41.7%; left: 55.0%; height: 52.7%; transform: rotate(-161.6deg); }
+.snake-2 { top: -8.7%; left: 55.0%; height: 50.4%; transform: translateX(-50%) rotate(-173.2deg); }
 /* Serpiente 3: casilla 42 → 21 */
-.snake-3 { top: 25.0%; left: 15.0%; height: 37.3%; transform: rotate(-153.4deg); }
+.snake-3 { top: -8.9%; left: 15.0%; height: 33.9%; transform: translateX(-50%) rotate(-169.8deg); }
 
 /* Modales */
 .modal {
