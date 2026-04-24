@@ -4,7 +4,7 @@ let isRolling = false;
 
 // Configuración del tablero (Trampas y Preguntas)
 const snakes = { 27: 8, 35: 5, 42: 21 }; // Inicio: Fin
-const ladders = { 3: 24, 37: 28, 54: 55 };
+const ladders = { 3: 24, 28: 37, 54: 55 };
 const questionTiles = [5, 12, 20, 25, 42, 48, 51]; // Casillas con puntos amarillos
 
 const questions = [
