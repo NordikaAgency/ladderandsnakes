@@ -207,7 +207,7 @@ function drawBoardElements() {
     svg.innerHTML = '';
     // Dibujamos según las posiciones definidas en tu objeto 'ladders' y 'snakes'
     drawLadder(svg, 3, 24);
-    drawLadder(svg, 37, 28);
+    drawLadder(svg, 28, 37);
     
     drawSnake(svg, 27, 8);
     drawSnake(svg, 35, 5);
