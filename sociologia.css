@@ -19,27 +19,14 @@ body {
     height: 100vh;
 }
 
-.board-section {
-    padding: 10px; /* Un poco de aire a los costados */
-    width: 100%;
-}
-
-.board-wrapper {
-    background: rgba(255,255,255,0.88);
-    border: 2px solid #ddd;
-    border-radius: 12px;
-    padding: 5px;
-    width: 100%; /* Fundamental para que no se desborde */
-}
-
 .game-wrapper {
-    display: flex;
-    flex-direction: column;
-    min-height: 100dvh; /* Usa dvh para evitar problemas con la barra de navegación móvil */
-    width: 100%;       /* Asegura que ocupe el ancho del celular */
-    max-width: 480px;  /* Límite para que no se vea gigante en tablets */
-    margin: 0 auto;
-    overflow-x: hidden; /* Evita cualquier desplazamiento lateral */
+    width: 90vw;
+    height: 90vh;
+    border: 3px solid #ccc;
+    display: grid;
+    grid-template-rows: 60px 1fr 60px;
+    background: var(--bg-light);
+    border-radius: 10px;
 }
 
 #game-container {
